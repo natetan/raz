@@ -2,15 +2,17 @@ const Discord = require('discord.js');
 const _ = require('lodash');
 
 const displayUtils = require('./displayUtils');
+const logos = require('../resources/logos.json');
 
 const prefix = process.env.prefix || '?';
 
 function createGeneralHelpEmbed(commands) {
   let desc = '`[param]` = optional\n`<param>` = required\n';
   let embed = new Discord.MessageEmbed()
-    .setColor('#ff6600')
+    .setColor(logos.color)
     .setTitle('General Commands')
-    .setDescription(desc);
+    .setDescription(desc)
+    .setThumbnail(logos.main);
   let generalCommands = Object.keys(commands.general);
   generalCommands.forEach((c) => {
     embed.addField(`**${c}** - *${commands.general[c].desc}*`, `\`${prefix}${c} ${commands.general[c].usage}\`\n`);
@@ -20,8 +22,9 @@ function createGeneralHelpEmbed(commands) {
 
 function createSpecializedHelpEmbed(commands) {
   let embed = new Discord.MessageEmbed()
-    .setColor('#ff6600')
+    .setColor(logos.color)
     .setTitle('Specialized Commands')
+    .setThumbnail(logos.main);
   let specializedCommands = Object.keys(commands.specialized);
   specializedCommands.forEach((c) => {
     embed.addField(`${c} - ${commands.specialized[c].desc}`, commands.specialized[c].options);
@@ -31,7 +34,7 @@ function createSpecializedHelpEmbed(commands) {
 
 function createMemeEmbed(meme) {
   let embed = new Discord.MessageEmbed()
-    .setColor('#ff6600')
+    .setColor(logos.color)
     .setTitle(`r/${meme.subreddit}`)
     .setDescription(meme.title)
     .setImage(meme.url)
@@ -41,7 +44,7 @@ function createMemeEmbed(meme) {
 
 function createSongEmbed(song) {
   let embed = new Discord.MessageEmbed()
-    .setColor('#ff6600')
+    .setColor(logos.color)
     .setTitle(song.name)
     .setThumbnail(song.album.images[0].url)
     .setURL(song.external_urls.spotify);
@@ -60,7 +63,7 @@ function createSongEmbed(song) {
 
 function createAlbumEmbed(album, tracks) {
   let embed = new Discord.MessageEmbed()
-    .setColor('#ff6600')
+    .setColor(logos.color)
     .setTitle(album.name)
     .setThumbnail(album.images[0].url)
     .setURL(album.external_urls.spotify);
@@ -80,7 +83,7 @@ function createAlbumEmbed(album, tracks) {
 
 const createSimpleMessageEmbed = (name, message) => {
   let embed = new Discord.MessageEmbed()
-    .setColor('#ff6600')
+    .setColor(logos.color)
     .setTitle(name)
     .setDescription(message);
   return embed;
@@ -88,9 +91,10 @@ const createSimpleMessageEmbed = (name, message) => {
 
 function createExampleEmbed() {
   let embed = new Discord.MessageEmbed()
-    .setColor('#ff6600')
+    .setColor(logos.color)
     .setTitle('Example Embed - Testing Purposes')
-    .setDescription('These are used for debugging and trying things out. !trial');
+    .setDescription('These are used for debugging and trying things out. !trial')
+    .setThumbnail(logos.sap['2']);
   return embed;
 }
 

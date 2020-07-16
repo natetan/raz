@@ -65,14 +65,6 @@ client.on("guildDelete", guild => {
   client.user.setActivity(`Serving ${client.guilds.cache.size} servers`);
 });
 
-client.on('guildMemberAdd', member => {
-
-});
-
-client.on('guildMemberRemove', member => {
-
-})
-
 client.on('message', async message => {
   const prefix = process.env.prefix ? '!' : '?';
 

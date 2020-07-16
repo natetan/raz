@@ -18,6 +18,7 @@
   "homepage": "https://github.com/natetan/raz#readme",
   "dependencies": {
     "discord.js": "^12.2.0",
+    "jimp": "^0.14.0",
     "lodash": "^4.17.19",
     "winston": "^3.3.3"
   }
