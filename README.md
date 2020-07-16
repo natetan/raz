@@ -1,10 +1,10 @@
-# Raz
+# Warrior
 Discord Bot for ESO
 
 Author: [Nate](https://github.com/natetan)
-## This is an Elder Scrolls Online based discord bot. It has fun commands
+## This is an Elder Scrolls Online based discord bot. It provides game-lookup functionality and commands for memes.
 
-### Commands (prefix: `!`)
+### Commands (prefix: `-`)
 **General**
 - `meme` `[subreddit]`: Random meme from r/memes, r/dankmemes, r/meirl, or a specified one.
 - `penis` `[username]`: Your penis size

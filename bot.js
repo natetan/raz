@@ -8,6 +8,8 @@ const quoteUtils = require('./utils/quoteUtils');
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 
+const prefix = process.env.prefix || '?';
+
 // Read all the js files in /commands
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
@@ -38,35 +40,29 @@ const logger = createLogger({
 const token = process.env.token || require('./auth.json')['token'];
 client.login(token);
 
-// This uses SnF's general channel ID
-// const defaultChannel = process.env.troll_channel_id || require('./auth.json').bot_test_general_channel_id;
-
 client.on('ready', () => {
   logger.info('Connected');
   logger.info(`Client ID: ${client.user.id}`);
   logger.info(client.user.tag);
   logger.info(`Bot has started, with ${client.users.cache.size} users, in ${client.channels.cache.size} channels of ${client.guilds.cache.size} guilds.`);
-  client.user.setActivity(`Serving ${client.guilds.cache.size} servers`);
+  client.user.setActivity(`${prefix}help`);
 });
 
 /**
  * This event triggers when the bot joins a guild.
  */
 client.on("guildCreate", guild => {
-  console.log(`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`);
-  client.user.setActivity(`Serving ${client.guilds.cache.size} servers`);
+  logger.info(`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`);
 });
 
 /**
  * This event triggers when the bot is removed from a guild.
  */
 client.on("guildDelete", guild => {
-  console.log(`I have been removed from: ${guild.name} (id: ${guild.id})`);
-  client.user.setActivity(`Serving ${client.guilds.cache.size} servers`);
+  logger.info(`I have been removed from: ${guild.name} (id: ${guild.id})`);
 });
 
 client.on('message', async message => {
-  const prefix = process.env.prefix ? '!' : '?';
 
   // It's good practice to ignore other bots. This also makes your bot ignore itself
   // and not get into a spam loop called 'botception'
@@ -77,7 +73,7 @@ client.on('message', async message => {
     let retorts = quotes.retort;
     let randomQuote = quoteUtils.getQuote(retorts);
     try {
-      await message.channel.send(randomQuote);
+      await message.channel.send('Lemme thonk');
     } catch (err) {
       console.log(`ERROR: on bot mention.\n\tMessage: [${message}]\n\tError: [${err}]`);
     }
