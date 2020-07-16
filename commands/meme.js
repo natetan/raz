@@ -31,7 +31,8 @@ module.exports = {
         return m.edit(meme.message);
       }
       let embed = eu.createMemeEmbed(meme);
-      return m.edit(embed);
+      await message.channel.send(embed);
+      return m.delete();
     } catch (err) {
       logger.error({
         user: message.author.username,
