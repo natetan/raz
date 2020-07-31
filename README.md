@@ -1,4 +1,4 @@
-# Warrior
+# Raz
 Discord Bot for ESO
 
 Author: [Nate](https://github.com/natetan)
